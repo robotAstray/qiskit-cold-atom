@@ -146,16 +146,16 @@ class FermionicState:
         occupations = [0] * circuit.num_qubits
         gates_applied = [False] * circuit.num_qubits
 
-        if not circuit.data[0][0].name == "load":
+        if not circuit.data[0].operation.name == "load":
             warnings.warn(
                 "No particles have been initialized, the circuit will return a trivial result."
-            )
-
+            ) 
+               
         # check that there are no more 'LoadFermions' instructions
         for instruction in circuit.data:
-            qargs = [circuit.qubits.index(qubit) for qubit in instruction[1]]
+            qargs = [circuit.qubits.index(qubit) for qubit in instruction.qubits]
 
-            if instruction[0].name == "load":
+            if instruction.operation.name == "load":
                 for idx in qargs:
                     if gates_applied[idx]:
                         raise QiskitColdAtomError(
