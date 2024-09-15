@@ -16,7 +16,7 @@ from abc import ABC
 from typing import Union, List, Optional
 import numpy as np
 
-from qiskit.providers import BackendV1 as Backend
+from qiskit.providers import BackendV2 as Backend
 from qiskit import QuantumCircuit
 from qiskit_nature.second_q.operators import FermionicOp
 
