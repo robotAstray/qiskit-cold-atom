@@ -12,10 +12,11 @@
 
 """Fermionic circuit solver tests."""
 
+import unittest
 import numpy as np
 
 from qiskit import QuantumCircuit
-from qiskit.test import QiskitTestCase
+
 from qiskit_nature.second_q.operators import FermionicOp, SpinOp
 
 from qiskit_cold_atom.fermions.fermion_circuit_solver import (
@@ -29,7 +30,7 @@ from qiskit_cold_atom.exceptions import QiskitColdAtomError
 import qiskit_cold_atom.spins  # pylint: disable=unused-import
 
 
-class TestFermionCircuitSolver(QiskitTestCase):
+class TestFermionCircuitSolver(unittest.TestCase):
     """class to test the FermionCircuitSolver class."""
 
     def setUp(self):
