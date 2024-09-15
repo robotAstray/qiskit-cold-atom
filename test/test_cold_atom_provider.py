@@ -14,12 +14,12 @@
 
 import os
 import uuid
+import unittest
 
-from qiskit.test import QiskitTestCase
 from qiskit_cold_atom.providers import ColdAtomProvider
 
 
-class TestHeidelbergProvider(QiskitTestCase):
+class TestHeidelbergProvider(unittest.TestCase):
     """HeidelbergColdAtomProvider tests."""
 
     def setUp(self):
