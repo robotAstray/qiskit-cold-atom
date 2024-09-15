@@ -135,7 +135,7 @@ class BaseCircuitSolver(ABC):
             operator_mat = self.operator_to_mat(op)
 
             # check that the operators are hermitian before exponentiating
-            if (operator_mat.H - operator_mat).count_nonzero() != 0:
+            if (operator_mat.conjugate().T - operator_mat).count_nonzero() != 0:
                 raise QiskitColdAtomError("generator of unitary gate is not hermitian!")
             # with the next release of qiskit nature this can be replaced with
             # if not operator.is_hermitian():
@@ -198,8 +198,10 @@ class BaseCircuitSolver(ABC):
         measured = [False] * circuit.num_qubits
 
         for inst in circuit.data:
-            name = inst[0].name
-            qargs = [circuit.qubits.index(qubit) for qubit in inst[1]]
+            operation = inst.operation 
+            qubits = inst.qubits
+            name = operation.name
+            qargs = [circuit.qubits.index(qubit) for qubit in qubits]
 
             if name == "measure":
                 for idx in qargs:
@@ -213,12 +215,12 @@ class BaseCircuitSolver(ABC):
                     continue
                 raise NotImplementedError
 
-            elif isinstance(inst[0], Gate):
+            elif isinstance(operation, Gate):
                 try:
-                    second_quantized_op = inst[0].generator
+                    second_quantized_op = operation.generator
                 except AttributeError as attribute_error:
                     raise QiskitColdAtomError(
-                        f"Gate {inst[0].name} has no defined generator"
+                        f"Gate {operation.name} has no defined generator"
                     ) from attribute_error
 
                 if not isinstance(second_quantized_op, SparseLabelOp):
