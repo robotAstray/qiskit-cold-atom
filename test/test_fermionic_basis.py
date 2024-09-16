@@ -11,15 +11,15 @@
 # that they have been altered from the originals.
 
 """ Fermionic basis tests."""
+import unittest
 
-from qiskit.test import QiskitTestCase
 from qiskit_cold_atom.fermions.fermion_circuit_solver import (
     FermionicState,
     FermionicBasis,
 )
 
 
-class TestFermionicBasis(QiskitTestCase):
+class TestFermionicBasis(unittest.TestCase):
     """Class to test the fermionic basis class."""
 
     def test_initialize(self):
