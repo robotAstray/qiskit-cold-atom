@@ -18,7 +18,6 @@ import math
 import unittest
 
 import numpy as np
-from qiskit.test import QiskitTestCase
 
 from qiskit_cold_atom.fermions import (
     FermiHubbard,
@@ -63,7 +62,7 @@ def _fidelity(counts1: dict[str, int], counts2: dict[str, int]) -> float:
 
 
 @unittest.skipUnless(HAVE_FFSIM, "requires ffsim")
-class TestFfsimBackend(QiskitTestCase):
+class TestFfsimBackend(unittest.TestCase):
     """Test FfsimBackend."""
 
     def test_hop_gate_spinless(self):
