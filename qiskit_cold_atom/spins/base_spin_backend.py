@@ -14,7 +14,7 @@
 
 from abc import ABC
 
-from qiskit.providers import BackendV1 as Backend
+from qiskit.providers.backend import BackendV2 as Backend
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit_cold_atom import QiskitColdAtomError
 
