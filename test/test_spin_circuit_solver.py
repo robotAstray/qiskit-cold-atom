@@ -13,15 +13,16 @@
 """Spin circuit solver tests"""
 
 import numpy as np
+import unittest
 
 from qiskit import QuantumCircuit
-from qiskit.test import QiskitTestCase
+
 from qiskit_nature.second_q.operators import FermionicOp, SpinOp
 from qiskit_cold_atom.spins.spin_circuit_solver import SpinCircuitSolver
 from qiskit_cold_atom.exceptions import QiskitColdAtomError
 
 
-class TestSpinCircuitSolver(QiskitTestCase):
+class TestSpinCircuitSolver(unittest.TestCase):
     """class to test the SpinCircuitSolver class."""
 
     def setUp(self):
