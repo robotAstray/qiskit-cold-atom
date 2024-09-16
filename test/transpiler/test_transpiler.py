@@ -13,16 +13,16 @@
 """Testing module for transpiling."""
 
 import numpy as np
+import unittest
 
 from qiskit import QuantumCircuit
 from qiskit.transpiler import PassManager
-from qiskit.test import QiskitTestCase
 
 from qiskit_cold_atom.transpiler import Optimize1SpinGates
 
 
 # pylint: disable=no-member
-class TestSpinTranspilation(QiskitTestCase):
+class TestSpinTranspilation(unittest.TestCase):
     """Test class for spin-based transpilation."""
 
     def test_optimize_1s_gates(self):
@@ -47,10 +47,10 @@ class TestSpinTranspilation(QiskitTestCase):
         self.assertEqual(circ_new.count_ops()["rly"], 1)
         self.assertEqual(circ_new.count_ops()["rlz2"], 1)
 
-        self.assertTrue(np.allclose(circ_new.data[0][0].params[0], 3 * np.pi / 2))
-        self.assertTrue(np.allclose(circ_new.data[1][0].params[0], np.pi))
-        self.assertTrue(np.allclose(circ_new.data[2][0].params[0], 3 * np.pi / 4))
-        self.assertTrue(np.allclose(circ_new.data[3][0].params[0], np.pi / 2))
+        self.assertTrue(np.allclose(circ_new.data[0].operation.params[0], 3 * np.pi / 2))
+        self.assertTrue(np.allclose(circ_new.data[1].operation.params[0], np.pi))
+        self.assertTrue(np.allclose(circ_new.data[2].operation.params[0], 3 * np.pi / 4))
+        self.assertTrue(np.allclose(circ_new.data[3].operation.params[0], np.pi / 2))
 
     def test_optimize_1s_gates_multi_spin(self):
         """Test the single-spin gate transpilation."""
@@ -69,5 +69,5 @@ class TestSpinTranspilation(QiskitTestCase):
         self.assertEqual(circ_new.count_ops()["rlx"], 1)
         self.assertEqual(circ_new.count_ops()["rly"], 1)
 
-        self.assertTrue(np.allclose(circ_new.data[0][0].params[0], np.pi))
-        self.assertTrue(np.allclose(circ_new.data[1][0].params[0], np.pi / 2))
+        self.assertTrue(np.allclose(circ_new.data[0].operation.params[0], np.pi))
+        self.assertTrue(np.allclose(circ_new.data[1].operation.params[0], np.pi / 2))
