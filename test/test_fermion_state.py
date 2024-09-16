@@ -12,14 +12,15 @@
 
 """ Fermionic state tests."""
 
+import unittest
+
 from qiskit import QuantumCircuit
-from qiskit.test import QiskitTestCase
 
 from qiskit_cold_atom.exceptions import QiskitColdAtomError
 from qiskit_cold_atom.fermions.fermion_circuit_solver import FermionicState
 
 
-class TestFermionState(QiskitTestCase):
+class TestFermionState(unittest.TestCase):
     """Class to test the fermion state class."""
 
     def test_initialize(self):
